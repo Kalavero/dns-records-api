@@ -23,6 +23,7 @@ services:
       - DATABASE_HOST=db
     volumes:
       - .:/project
+    user: ${CURRENT_UID}
 
 volumes:
   postgres:

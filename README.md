@@ -35,6 +35,12 @@ Use the following commands to run the automated tests.
 $ docker-compose run web bundle exec rspec
 ```
 
+### Running container with your host machine user
+
+```sh
+CURRENT_UID=$(id -u):$(id -g) docker-compose run --rm web bash
+```
+
 ### API Endpoint #1 - [POST] /api/v1/dns_records or /dns_records
 
 Below are the curl snippets to populate the database for testing.
