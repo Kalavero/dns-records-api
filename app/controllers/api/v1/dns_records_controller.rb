@@ -8,7 +8,21 @@ module Api
 
       # POST /dns_records
       def create
-        # TODO: Implement this action
+        dns_record = DnsRecord.new(create_params)
+
+        if dns_record.save
+          render json: DnsRecords::CreateSerializer.new(dns_record).to_h,
+            status: :created
+        else
+          render json: {error: dns_record.errors.full_messages},
+            status: :unprocessable_entity
+        end
+      end
+
+      private
+
+      def create_params
+        params.require(:dns_records).permit(:ip, hostnames_attributes: [:hostname])
       end
     end
   end
