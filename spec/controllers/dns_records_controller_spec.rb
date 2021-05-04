@@ -365,7 +365,7 @@ RSpec.describe Api::V1::DnsRecordsController, type: :controller do
 
       it 'returns the created dns record as json' do
         dns_record = DnsRecord.last
-        expect(parsed_body).to eq({id: dns_record.id, ip: dns_record.ip})
+        expect(parsed_body).to eq({id: dns_record.id, ip_address: dns_record.ip})
       end
     end
 

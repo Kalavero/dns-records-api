@@ -3,7 +3,7 @@ module Api
     class DnsRecordsController < ApplicationController
       # GET /dns_records
       def index
-        # TODO: Implement this action
+        render json: DnsRecords::IndexSerializer.new(DnsRecord, params.permit!).call
       end
 
       # POST /dns_records
@@ -11,7 +11,7 @@ module Api
         dns_record = DnsRecord.new(create_params)
 
         if dns_record.save
-          render json: DnsRecords::CreateSerializer.new(dns_record).to_h,
+          render json: DnsRecords::DnsRecordSerializer.new(dns_record).call,
             status: :created
         else
           render json: {error: dns_record.errors.full_messages},
